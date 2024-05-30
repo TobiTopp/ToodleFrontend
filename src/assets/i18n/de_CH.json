@@ -1,0 +1,70 @@
+{
+  "main": {
+    "lang": "Sprache",
+    "button_save": "Speichern",
+    "button_back": "Zurück",
+    "button_yes": "Ja",
+    "button_no": "Nein",
+    "login": "Bitte melden Sie sich an um die Applikation zu verwenden!"
+  },
+  "dialogs": {
+    "message_delete": "Soll dieser Eintrag wirklich gelöscht werden?",
+    "title_delete": "Sind Sie sicher?"
+  },
+  "messages": {
+    "save_ok": "Objekt gespeichert!",
+    "deleted_ok": "Objekt gelöscht!",
+    "delete_error": "Objekt konnte nicht gelöscht werden!",
+    "save_error": "Objekt konnte nicht gespeichert werden. Server Fehler!",
+    "save_new_ok": "Neues Objekt gespeichert!",
+    "save_new_error": "Neues Objekt konnte nicht gespeichert werden. Server Fehler!",
+    "close": "Schliessen"
+  },
+  "tag": {
+    "tagName": "Tag Name",
+    "button_new": "Neuen Tag erfassen",
+    "tagDescription": "Tag Beschreibung"
+    
+  },
+  "topic": {
+    "topicId": "Topic Nummer",
+    "topicName": "Topic Name",
+    "topicDescription": "Topic Beschreibung",
+    "button_new": "Neues Topic erfassen"
+  },
+  "processor": {
+    "processorId": "Personen Nummer",
+    "firstName": "Vorname",
+    "secondName": "Nachname",
+    "button_new": "Neue Person erfassen"
+
+  },
+  "task": {
+    "taskName": "Task Name",
+    "taskDescription": "Task Beschreibung",
+    "dueDate": "Zu erledigen bis: ",
+    "processor": "Person",
+    "topic": "Topic",
+    "tag": "Tag",
+    "button_new": "Neue Task erfassen"
+  },
+  "nav": {
+    "dashboard": " Dashboard",
+    "topics": " Topics",
+    "processors": " Personen",
+    "processor_edit": "Personen editieren",
+    "processor_new": "Neue Person erfassen",
+    "tags": "Tags",
+    "tag_edit": "Tags editieren",
+    "tag_new": "Neuen Tag erfassen",
+    "task_edit": "Tasks editieren",
+    "task_new": "Neue Tasks erfassen",
+    "usage": " Tasks",
+    "noaccess": "Kein Zugriff",
+    "login": "Anmelden",
+    "logout": "Abmelden"
+  },
+  "dashboard": {
+    "welcome": "Willkommen {{username}} ({{useralias}})!"
+  }
+}

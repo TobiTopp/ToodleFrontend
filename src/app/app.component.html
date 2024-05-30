@@ -1,0 +1,50 @@
+<div style="height: 100%; overflow: hidden">
+  <div style="vertical-align: middle">
+    <button (click)="drawer.toggle()" color="primary" mat-icon-button type="button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-header></app-header>
+  </div>
+
+
+  <mat-drawer-container class="demoapp-container">
+    <mat-drawer #drawer [opened]="true" class="demoapp-sidenav" mode="side">
+      <div>
+        <div>
+          <button [routerLink]="['dashboard']" color="primary" mat-button>
+            &nbsp;{{'nav.dashboard' | translate }}</button>
+        </div>
+        <div>
+          <button [routerLink]="['topics']" color="primary" mat-button>
+           &nbsp;{{'nav.topics' | translate }}</button>
+        </div>
+        <div>
+          <button [routerLink]="['processors']" color="primary" mat-button>
+           &nbsp;{{'nav.processors' | translate }}</button>
+        </div>
+        <div>
+          <button [routerLink]="['tags']" color="primary" mat-button>
+           &nbsp;{{'nav.tags' | translate }}</button>
+        </div>
+        <div>
+          <button [routerLink]="['tasks']" color="primary" mat-button>
+           &nbsp;{{'nav.usage' | translate }}</button>
+        </div>
+        <div *ngIf="oauthService.hasValidAccessToken()" style="margin-top: 50px">
+          <button (click)="logout()" color="warn" mat-button>
+            <mat-icon>logout</mat-icon>
+            {{ 'nav.logout' | translate }}
+          </button>
+        </div>
+      </div>
+      <div style="margin-top: 50px;margin-left: 20px;">
+      </div>
+    </mat-drawer>
+
+    <div class="toodle-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container>
+</div>
+

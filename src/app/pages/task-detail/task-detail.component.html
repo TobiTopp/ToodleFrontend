@@ -1,0 +1,67 @@
+<div>
+  <div>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span class="toolbar-spacer"></span>
+        <button (click)="back()" color="primary" mat-button style="color: white">
+          <mat-icon>arrow_back_ios</mat-icon>
+          {{ 'main.button_back' | translate }}
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="app-form">
+    <form (ngSubmit)="save(objForm.value)" [formGroup]="objForm!">
+
+      <mat-form-field>
+        <mat-label>{{ 'task.taskName' | translate }}</mat-label>
+        <textarea #inputTaskName cdkAutosizeMaxRows="10" cdkTextareaAutosize formControlName="taskName" matInput maxlength="50" required></textarea>
+        <mat-hint align="end">{{inputTaskName.value.length || 0}}/50</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'task.taskDescription' | translate }}</mat-label>
+        <textarea #inputTaskDescription cdkAutosizeMaxRows="10" cdkAutosizeMinRows="4" cdkTextareaAutosize formControlName="taskDescription" matInput maxlength="250" required></textarea>
+        <mat-hint align="end">{{inputTaskDescription.value.length || 0}}/250</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>{{ 'task.dueDate' | translate }}</mat-label>
+        <input [matDatepicker]="pickerToDate" formControlName="dueDate" matInput required>
+        <mat-datepicker-toggle [for]="pickerToDate" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #pickerToDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'task.processor' | translate }}</mat-label>
+        <mat-select formControlName="processorId" required>
+          <mat-option *ngFor="let processor of processors" [value]="processor.processorId">
+            {{processor.processorId}} - {{processor.firstName}}&nbsp;{{processor.secondName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'task.topic' | translate }}</mat-label>
+        <mat-select formControlName="topicId">
+          <mat-option *ngFor="let topic of topics" [value]="topic.topicId">
+            {{topic.topicId}} - {{topic.topicName}}&nbsp;{{topic.topicDescription}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'task.tag' | translate }}</mat-label>
+        <mat-select formControlName="tagId">
+          <mat-option *ngFor="let tag of tags" [value]="tag.tagId">
+            {{tag.tagId}} - {{tag.tagName}}&nbsp;{{tag.tagDescription}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button [disabled]="!objForm.valid" color="primary" mat-raised-button style="width: 200px">
+        {{ 'main.button_save' | translate }}
+      </button>
+    </form>
+  </div>
+</div>
