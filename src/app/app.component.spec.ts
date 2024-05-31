@@ -21,7 +21,7 @@ describe('AppComponent', () => {
             deps: [HttpClient]
           }
         }),
-        HttpClientModule
+        HttpClientModule  
       ],
       providers: [
         //{provide: HttpClient, useValue: createSpyFromClass(HttpClient)},
