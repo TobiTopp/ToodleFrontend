@@ -16,10 +16,11 @@ import {TaskDetailComponent} from './pages/task-detail/task-detail.component';
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'tags', component: TagListComponent, canActivate: [appCanActivate], data: {roles: [AppRoles.Admin]}},
+
+  {path: 'tags', component: TagListComponent, canActivate: [appCanActivate], data: {roles: [AppRoles.Read]}},
   {
     path: 'tag', canActivate: [appCanActivate], component: TagDetailComponent, pathMatch: 'full',
-    data: {roles: [AppRoles.Read]}
+    data: {roles: [AppRoles.Update]}
   },
   {
     path: 'tag/:id', canActivate: [appCanActivate], component: TagDetailComponent, pathMatch: 'full',
@@ -28,39 +29,39 @@ const routes: Routes = [
   { path: 'processors',
     component: ProcessorListComponent,
     canActivate: [appCanActivate],
-    data: {roles: [AppRoles.Update]}
-  },
-  {
-    path: 'processor', canActivate: [appCanActivate], component: ProcessorDetailComponent, pathMatch: 'full',
     data: {roles: [AppRoles.Read]}
   },
   {
+    path: 'processor', canActivate: [appCanActivate], component: ProcessorDetailComponent, pathMatch: 'full',
+    data: {roles: [AppRoles.Admin]}
+  },
+  {
     path: 'processor/:id', canActivate: [appCanActivate], component: ProcessorDetailComponent, pathMatch: 'full',
-    data: {roles: [AppRoles.Update]}
+    data: {roles: [AppRoles.Admin]}
   },
   {
     path: 'topics',
     component: TopicListComponent,
     canActivate: [appCanActivate],
-    data: {roles: [AppRoles.Admin]}
-  },
-  {
-    path: 'topic', canActivate: [appCanActivate], component: TopicDetailComponent, pathMatch: 'full',
     data: {roles: [AppRoles.Read]}
   },
   {
+    path: 'topic', canActivate: [appCanActivate], component: TopicDetailComponent, pathMatch: 'full',
+    data: {roles: [AppRoles.Update]}
+  },
+  {
     path: 'topic/:id', canActivate: [appCanActivate], component: TopicDetailComponent, pathMatch: 'full',
-    data: {roles: [AppRoles.Admin]}
+    data: {roles: [AppRoles.Update]}
   },
   {
     path: 'tasks',
     component: TaskListComponent,
     canActivate: [appCanActivate],
-    data: {roles: [AppRoles.Update]}
+    data: {roles: [AppRoles.Read]}
   },
   {
     path: 'task', canActivate: [appCanActivate], component: TaskDetailComponent, pathMatch: 'full',
-    data: {roles: [AppRoles.Read]}
+    data: {roles: [AppRoles.Update]}
   },
   {
     path: 'task/:id', canActivate: [appCanActivate], component: TaskDetailComponent, pathMatch: 'full',

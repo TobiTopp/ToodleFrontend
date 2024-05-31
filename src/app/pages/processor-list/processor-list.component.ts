@@ -20,7 +20,7 @@ export class ProcessorListComponent extends BaseComponent implements OnInit, Aft
   processorDataSource = new MatTableDataSource<Processor>();
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  columns = ['firstName', 'secondName'];
+  columns = ['firstName', 'secondName', 'actions'];
 
   public constructor(private processorService: ProcessorService, private dialog: MatDialog,
                      private headerService: HeaderService, private router: Router, private snackBar: MatSnackBar,
@@ -53,7 +53,7 @@ export class ProcessorListComponent extends BaseComponent implements OnInit, Aft
     await this.router.navigate(['processor']);
   }
 
-  delete(e: any) {
+  delete(e : Processor) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '400px',
       data: {
@@ -64,9 +64,9 @@ export class ProcessorListComponent extends BaseComponent implements OnInit, Aft
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult === true) {
-        this.processorService.delete(e.id).subscribe({
+        this.processorService.delete(e.processorId).subscribe({
           next: response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
               this.snackBar.open(this.deletedMessage, this.closeMessage, {duration: 5000});
               this.reloadData();
             } else {

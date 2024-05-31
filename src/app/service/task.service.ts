@@ -14,7 +14,7 @@ export class TaskService {
   }
 
   public getList(): Observable<Task[]> {
-    return this.http.get<Task[]>(environment.backendBaseUrl + this.backendUrl);
+    return this.http.get<Task[]>(environment.backendBaseUrl + `tasks`);
   }
 
   public getOne(id: number): Observable<Task> {
@@ -22,14 +22,14 @@ export class TaskService {
   }
 
   public update(task: Task): Observable<Task> {
-    return this.http.put<Task>(environment.backendBaseUrl + this.backendUrl + `/${task.id}`, task);
+    return this.http.put<Task>(environment.backendBaseUrl + this.backendUrl + `/update/${task.taskId}`, task);
   }
 
   public save(task: Task): Observable<Task> {
-    return this.http.post<Task>(environment.backendBaseUrl + this.backendUrl, task);
+    return this.http.post<Task>(environment.backendBaseUrl + this.backendUrl + `/create`, task);
   }
 
   public delete(id: number): Observable<HttpResponse<string>> {
-    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/${id}`, {observe: 'response'});
+    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/delete/${id}`, {observe: 'response'});
   }
 }

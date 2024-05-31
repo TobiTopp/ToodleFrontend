@@ -14,7 +14,7 @@ export class ProcessorService {
   }
 
   public getList(): Observable<Processor[]> {
-    return this.http.get<Processor[]>(environment.backendBaseUrl + this.backendUrl);
+    return this.http.get<Processor[]>(environment.backendBaseUrl + `processors`);
   }
 
   public getOne(id: number): Observable<Processor> {
@@ -22,14 +22,14 @@ export class ProcessorService {
   }
 
   public update(processor: Processor): Observable<Processor> {
-    return this.http.put<Processor>(environment.backendBaseUrl + this.backendUrl + `/${processor.processorId}`, processor);
+    return this.http.put<Processor>(environment.backendBaseUrl + this.backendUrl + `/update/${processor.processorId}`, processor);
   }
 
   public save(processor: Processor): Observable<Processor> {
-    return this.http.post<Processor>(environment.backendBaseUrl + this.backendUrl, processor);
+    return this.http.post<Processor>(environment.backendBaseUrl +  this.backendUrl + `/create`, processor);
   }
 
   public delete(id: number): Observable<HttpResponse<string>> {
-    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/${id}`, {observe: 'response'});
+    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl  + `/delete`+ `/${id}`, {observe: 'response'});
   }
 }

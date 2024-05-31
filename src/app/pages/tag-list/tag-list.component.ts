@@ -20,7 +20,7 @@ export class TagListComponent extends BaseComponent implements OnInit, AfterView
   tagDataSource = new MatTableDataSource<Tag>();
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  columns = ['tagName', 'tagDescription'];
+  columns = ['tagName', 'tagDescription', 'actions'];
 
   public constructor(private tagService: TagService, private dialog: MatDialog,
                      private headerService: HeaderService, private router: Router, private snackBar: MatSnackBar,
@@ -66,7 +66,7 @@ export class TagListComponent extends BaseComponent implements OnInit, AfterView
       if (dialogResult === true) {
         this.tagService.delete(e.tagId).subscribe({
           next: response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
               this.snackBar.open(this.deletedMessage, this.closeMessage, {duration: 5000});
               this.reloadData();
             } else {

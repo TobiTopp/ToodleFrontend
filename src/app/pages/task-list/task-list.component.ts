@@ -20,7 +20,7 @@ export class TaskListComponent extends BaseComponent implements OnInit, AfterVie
   taskDataSource = new MatTableDataSource<Task>();
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  columns = ['taskName','taskDescription','dueDate','processorData', 'topicData', 'tagData'];
+  columns = ['taskName','taskDescription','dueDate','processorData', 'topicData', 'tagData', 'actions'];
 
   public constructor(private taskService: TaskService, private dialog: MatDialog,
                      private headerService: HeaderService, private router: Router, private snackBar: MatSnackBar,
@@ -46,7 +46,7 @@ export class TaskListComponent extends BaseComponent implements OnInit, AfterVie
   }
 
   async edit(e: Task) {
-    await this.router.navigate(['task', e.id]);
+    await this.router.navigate(['task', e.taskId]);
   }
 
   async add() {
@@ -64,9 +64,9 @@ export class TaskListComponent extends BaseComponent implements OnInit, AfterVie
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult === true) {
-        this.taskService.delete(e.id).subscribe({
+        this.taskService.delete(e.taskId).subscribe({
           next: response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
               this.snackBar.open(this.deletedMessage, this.closeMessage, {duration: 5000});
               this.reloadData();
             } else {

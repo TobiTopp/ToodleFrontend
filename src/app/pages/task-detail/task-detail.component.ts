@@ -12,6 +12,7 @@ import {TaskService} from '../../service/task.service';
 import {TagService} from '../../service/tag.service';
 import {ProcessorService} from '../../service/processor.service';
 import { Topic } from 'src/app/dataaccess/topic';
+import { TopicService } from 'src/app/service/topic.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -37,6 +38,7 @@ export class TaskDetailComponent extends BaseComponent implements OnInit {
 
   constructor(private router: Router, private headerService: HeaderService, private route: ActivatedRoute,
               private taskService: TaskService, private tagService: TagService,
+              private topicService: TopicService,
               private snackBar: MatSnackBar, private processorService: ProcessorService,
               protected override translate: TranslateService, private fb: UntypedFormBuilder) {
     super(translate);
@@ -50,8 +52,9 @@ export class TaskDetailComponent extends BaseComponent implements OnInit {
         this.task = obj;
         this.headerService.setPage('nav.task_edit');
         this.objForm = this.fb.group(obj);
-        this.objForm.addControl('tagId', new UntypedFormControl(obj.tag.tagId));
-        this.objForm.addControl('processorId', new UntypedFormControl(obj.processor.processorId));
+        this.objForm.addControl('tagId', new UntypedFormControl(obj.tagData.tagId));
+        this.objForm.addControl('topicId', new UntypedFormControl(obj.topicData.topicId));
+        this.objForm.addControl('processorId', new UntypedFormControl(obj.processorData.processorId));
       });
     } else {
       this.headerService.setPage('nav.task_new');
@@ -59,6 +62,9 @@ export class TaskDetailComponent extends BaseComponent implements OnInit {
 
     this.tagService.getList().subscribe(obj => {
       this.tags = obj;
+    });
+    this.topicService.getList().subscribe(obj => {
+      this.topics = obj;
     });
     this.processorService.getList().subscribe(obj => {
       this.processors = obj;
@@ -72,10 +78,11 @@ export class TaskDetailComponent extends BaseComponent implements OnInit {
   async save(formData: any) {
     this.task = Object.assign(formData);
 
-    this.task.tag = this.tags.find(o => o.tagId === formData.tagId) as Tag;
-    this.task.processor = this.processors.find(o => o.processorId === formData.processorId) as Processor;
+    this.task.tagData = this.tags.find(o => o.tagId === formData.tagId) as Tag;
+    this.task.topicData = this.topics.find(o => o.topicId === formData.topicId) as Topic;
+    this.task.processorData = this.processors.find(o => o.processorId === formData.processorId) as Processor;
 
-    if (this.task.id) {
+    if (this.task.taskId) {
       this.taskService.update(this.task).subscribe({
         next: () => {
           this.snackBar.open(this.messageSaved, this.messageClose, {duration: 5000});

@@ -15,7 +15,7 @@ export class TopicService {
   }
 
   public getList(): Observable<Topic[]> {
-    return this.http.get<Topic[]>(environment.backendBaseUrl + this.backendUrl);
+    return this.http.get<Topic[]>(environment.backendBaseUrl + `topics`);
   }
 
   public getOne(id: number): Observable<Topic> {
@@ -23,14 +23,14 @@ export class TopicService {
   }
 
   public update(topic: Topic): Observable<Topic> {
-    return this.http.put<Topic>(environment.backendBaseUrl + this.backendUrl + `/${topic.topicId}`, topic);
+    return this.http.put<Topic>(environment.backendBaseUrl + this.backendUrl + `/update/${topic.topicId}`, topic);
   }
 
   public save(topic: Topic): Observable<Topic> {
-    return this.http.post<Topic>(environment.backendBaseUrl + this.backendUrl, topic);
+    return this.http.post<Topic>(environment.backendBaseUrl + this.backendUrl + `/create`, topic);
   }
 
   public delete(id: number): Observable<HttpResponse<string>> {
-    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/${id}`, {observe: 'response'});
+    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/delete/${id}`, {observe: 'response'});
   }
 }

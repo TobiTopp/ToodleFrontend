@@ -20,7 +20,7 @@ export class TopicListComponent extends BaseComponent implements OnInit, AfterVi
   topicDataSource = new MatTableDataSource<Topic>();
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  columns = ['topicName', 'topicDescription'];
+  columns = ['topicName', 'topicDescription', 'actions'];
 
   public constructor(private topicService: TopicService, private dialog: MatDialog,
                      private headerService: HeaderService, private router: Router, private snackBar: MatSnackBar,
@@ -66,7 +66,7 @@ export class TopicListComponent extends BaseComponent implements OnInit, AfterVi
       if (dialogResult === true) {
         this.topicService.delete(e.topicId).subscribe({
           next: response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
               this.snackBar.open(this.deletedMessage, this.closeMessage, {duration: 5000});
               this.reloadData();
             } else {

@@ -1,8 +1,8 @@
 <div>
   <div>
-    <mat-toolbar *appIsInRole="'admin'" color="primary">
+    <mat-toolbar *appIsInRole="'update'" color="primary">
       <span>
-        <button (click)="add()" *appIsInRole="'admin'" color="primary" mat-button style="color: white">
+        <button (click)="add()" *appIsInRole="'update'" color="primary" mat-button style="color: white">
           <mat-icon>add</mat-icon>
           {{'topic.button_new' | translate}}
         </button>
@@ -13,10 +13,10 @@
     <ng-container matColumnDef="actions">
       <th *matHeaderCellDef class="w-75 th-center" mat-header-cell></th>
       <td *matCellDef="let element" mat-cell style="text-align: end">
-        <button (click)="edit(element)" *appIsInRole="'admin'" color="primary" mat-button>
+        <button (click)="edit(element)" *appIsInRole="'update'" color="primary" mat-button>
           <mat-icon>edit</mat-icon>
         </button>
-        <button (click)="delete(element)" *appIsInRole="'admin'" color="warn" mat-button>
+        <button (click)="delete(element)" *appIsInRole="'update'" color="warn" mat-button>
           <mat-icon>delete</mat-icon>
         </button>
       </td>

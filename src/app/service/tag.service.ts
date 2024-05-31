@@ -9,28 +9,27 @@ import {Tag} from '../dataaccess/tag';
 })
 export class TagService {
 
-  readonly backendUrl = 'tag';
 
   constructor(private http: HttpClient) {
   }
 
   public getList(): Observable<Tag[]> {
-    return this.http.get<Tag[]>(environment.backendBaseUrl + this.backendUrl);
+    return this.http.get<Tag[]>(environment.backendBaseUrl + `tags`);
   }
 
   public getOne(id: number): Observable<Tag> {
-    return this.http.get<Tag>(environment.backendBaseUrl + this.backendUrl + `/${id}`);
+    return this.http.get<Tag>(environment.backendBaseUrl  + `tag/${id}`);
   }
 
   public update(tag: Tag): Observable<Tag> {
-    return this.http.put<Tag>(environment.backendBaseUrl + this.backendUrl + `/${tag.tagId}`, tag);
+    return this.http.put<Tag>(environment.backendBaseUrl + `tag/update/${tag.tagId}`, tag);
   }
 
   public save(tag: Tag): Observable<Tag> {
-    return this.http.post<Tag>(environment.backendBaseUrl + this.backendUrl, tag);
+    return this.http.post<Tag>(environment.backendBaseUrl + `tag/create`, tag);
   }
 
   public delete(id: number): Observable<HttpResponse<string>> {
-    return this.http.delete<string>(environment.backendBaseUrl + this.backendUrl + `/${id}`, {observe: 'response'});
+    return this.http.delete<string>(environment.backendBaseUrl + `tag/delete/${id}`, {observe: 'response'});
   }
 }
